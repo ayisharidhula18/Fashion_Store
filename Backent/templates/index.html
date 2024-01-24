@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>FashionStore</title>
+ 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+  <link href="{% static 'assets/css/pace.min.css' %}" rel="stylesheet"/>
+  <script src="{% static 'assets/js/pace.min.js' %}"></script>
+  <link rel="icon" href="{% static 'assets/images/logo2.png' %}" type="image/x-icon">
+  <link href="{% static 'assets/plugins/vectormap/jquery-jvectormap-2.0.2.css' %}" rel="stylesheet"/>
+  <link href="{% static 'assets/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet"/>
+  <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet"/>
+  <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" type="text/css"/>
+  <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet" type="text/css"/>
+  <link href="{% static 'assets/css/sidebar-menu.css' %}" rel="stylesheet"/>
+  <link href="{% static 'assets/css/app-style.css' %}" rel="stylesheet"/>
+
+</head>
+
+<body class="bg-theme bg-theme1">
+
+ <div id="wrapper">
+
+   <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+     <div class="brand-logo">
+      <a href="index.html">
+       <img src="{% static 'assets/images/fas.png' %}" class="logo-icon" alt="logo icon">
+       <h5 class="logo-text" style="color: orange;">FashionStore ADMIN</h5>
+     </a>
+   </div>
+   <ul class="sidebar-menu do-nicescrol">
+      <li class="sidebar-header">MAIN NAVIGATION</li>
+      <li>
+        <a href="{% url 'indexpage' %}">
+          <i class="fa fa-home"></i> <span>DASHBOARD</span>
+        </a>
+      </li>
+
+       <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+              </span>
+              <span class="menu-title"><i class="fa fa-user" aria-hidden="true"></i></i>ADMIN</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'addadmin' %}"><i class="fa fa-user-plus" aria-hidden="true"></i>ADD ADMIN</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admindisplay' %}"><i class="fa fa-television" aria-hidden="true"></i>DISPLAY ADMIN</a></li>
+
+              </ul>
+            </div>
+          </li>
+       <li class="nav-item menu-items">
+            <a class="nav-link collapsed" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <span class="menu-icon">
+                <i class="mdi mdi-security"></i>
+              </span>
+              <span class="menu-title"><i class="fa fa-th-list" aria-hidden="true"></i>CATEGORIES</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth" style="">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'category' %}"><i class="fa fa-plus-circle" aria-hidden="true"></i> ADD CATEGORY</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'categorydisplay' %}"><i class="fa fa-laptop" aria-hidden="true"></i> DISPLAY CATEGORY </a></li>
+
+              </ul>
+            </div>
+          </li>
+
+
+       <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+              <i class="typcn typcn-film menu-icon"></i>
+               <i class="fa fa-th-large" aria-hidden="true"></i>
+              <span class="menu-title">PRODUCT</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="{% url 'product' %}"><i class="fa fa-plus-circle" aria-hidden="true"></i>ADD PRODUCT</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'productdisplay' %}"><i class="fa fa-laptop" aria-hidden="true"></i>DISPLAY PRODUCT</a></li>
+              </ul>
+            </div>
+          </li>
+
+
+
+      <li>
+        <a href="{% url 'orders' %}">
+          <i class=" fa fa-shopping-bag"></i> <span>ORDERS</span>
+        </a>
+      </li>
+
+
+    </ul>
+
+   </div>
+   
+<header class="topbar-nav">
+ <nav class="navbar navbar-expand fixed-top">
+  <ul class="navbar-nav mr-auto align-items-center">
+
+  </ul>
+
+  <ul class="navbar-nav align-items-center right-nav-link">
+
+       <li class="dropdown-divider"></li>
+      <a href="{% url 'displaymessage' %}">
+        <li class="dropdown-item"> <i class="fa fa-envelope-open-o" aria-hidden="true"></i></i> Inbox</li>
+          </a>
+
+    <li class="nav-item">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+        <span class="user-profile"><img src="{% static 'assets/images/adminface.jpg' %}" class="img-circle" alt="user avatar"></span>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-right">
+       <li class="dropdown-item user-details">
+        <a href="javaScript:void();">
+           <div class="media">
+             <div class="avatar"><img class="align-self-start mr-3" src="{% static 'assets/images/adminface.jpg' %}" alt="user avatar"></div>
+            <div class="media-body">
+                {% if request.session.username %}
+            <h6 class="mt-2 user-title">{{ request.session.username }}</h6>
+            <p class="user-subtitle"></p>
+                {% endif %}
+            </div>
+           </div>
+          </a>
+        </li>
+
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><a href="{% url  'adminlogout' %}"> <i class="icon-power mr-2"></i> Logout </a></li>
+
+      </ul>
+    </li>
+  </ul>
+</nav>
+</header>
+
+
+<div class="clearfix"></div>
+
+  <div class="content-wrapper">
+      {% block content %}
+    <div class="container-fluid">
+
+
+		  <div class="overlay toggle-menu"></div>
+	
+
+    </div>
+      {% endblock %}
+   
+
+    </div>
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+  
+   <div class="right-sidebar">
+    <div class="switcher-icon">
+      <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+    </div>
+    <div class="right-sidebar-content">
+
+      <p class="mb-0">Gaussion Texture</p>
+      <hr>
+
+      <ul class="switcher">
+        <li id="theme1"></li>
+        <li id="theme2"></li>
+        <li id="theme3"></li>
+        <li id="theme4"></li>
+        <li id="theme5"></li>
+        <li id="theme6"></li>
+      </ul>
+
+      <p class="mb-0">Gradient Background</p>
+      <hr>
+
+      <ul class="switcher">
+        <li id="theme7"></li>
+        <li id="theme8"></li>
+        <li id="theme9"></li>
+        <li id="theme10"></li>
+        <li id="theme11"></li>
+        <li id="theme12"></li>
+		<li id="theme13"></li>
+        <li id="theme14"></li>
+        <li id="theme15"></li>
+      </ul>
+
+     </div>
+   </div>
+ 
+
+  </div>
+
+ 
+  <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/js/popper.min.js' %}"></script>
+  <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+  <script src="{% static 'assets/plugins/simplebar/js/simplebar.js' %}"></script>
+  <script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
+  <script src="{% static 'assets/js/jquery.loading-indicator.js' %}"></script>
+  <script src="{% static 'assets/js/app-script.js' %}"></script>
+
+  <script src="{% static 'assets/plugins/Chart.js/Chart.min.js' %}"></script>
+
+  <script src="{% static 'assets/js/index.js' %}"></script>
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+   {% if messages %}
+  {% for message in messages %}
+
+   {% if message.tags == 'warning' %}
+   <script>
+     swal('{{message}}','','warning');
+   </script>
+
+   {% elif message.tags == 'error' %}
+   <script>
+     swal('{{message}}','','error');
+   </script>
+
+   {% else%}
+   <script>
+     swal('{{message}}','','success');
+   </script>
+
+   {% endif %}
+
+   {% endfor %} {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+   <title>FASHIONSTORE</title>
+
+   <link rel="shortcut icon" type="image/png" href="{% static 'product/assets/img/title.png' %}">
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="{% static 'product/assets/css/all.min.css' %}">
+   <link rel="stylesheet" href="{% static 'product/assets/bootstrap/css/bootstrap.min.css' %}">
+   <link rel="stylesheet" href="{% static 'product/assets/css/owl.carousel.css' %}">
+   <link rel="stylesheet" href="{% static 'product/assets/css/magnific-popup.css' %}">
+   <link rel="stylesheet" href="{% static 'product/assets/css/animate.css' %}">
+   <link rel="stylesheet" href="{% static 'product/assets/css/meanmenu.min.css' %}">
+   <link rel="stylesheet" href="{% static 'product/assets/css/main.css' %}">
+   <link rel="stylesheet" href="{% static 'product/assets/css/responsive.css' %}">
+
+</head>
+<body>
+
+   <div class="top-header-area" id="sticker" style="background-color: #202c45;" >
+      <div class="container" >
+         <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+               <div class="main-menu-wrap">
+                  <div class="site-logo">
+                     <a href="index.html">
+                         <img src="{% static 'product/assets/img/fashhi.png' %}" alt="">
+                     </a>
+                  </div>
+
+
+
+
+                  <nav class="main-menu">
+                     <ul>
+                        <li class="current-list-item"><a href="{% url 'homepage' %}">HOME</a>
+
+                         <li>
+                            <a href="{% url 'categorypage' %}">CATEGORIES</a>
+                        </li>
+
+                         <li>
+                            <a href="{% url 'contactpage' %}">CONTACT</a>
+                        </li>
+
+                         <i class="fas fa-user-alt"></i>
+                        {% if request.session.username %}
+                        <li><a href=""><B>{{ request.session.username }}</B></a>
+                           {% endif %}
+                           <ul class="sub-menu">
+                              <li><a href="{% url 'weblogin' %}">SIGN IN/SIGN UP</a></li>
+                              <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+                           </ul>
+                        </li>
+
+                        <li>
+                           <div class="header-icons">
+                              <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                           </div>
+                        </li>
+                     </ul>
+                  </nav>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+  
+   <div class="search-area">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-12">
+               <span class="close-btn"><i class="fas fa-window-close"></i></span>
+               <div class="search-bar">
+                  <div class="search-bar-tablecell">
+                     <h3>Search For:</h3>
+                     <input type="text" placeholder="Keywords">
+                     <button type="submit">Search <i class="fas fa-search"></i></button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+  
+   <div class="breadcrumb-section" style="background-color: #202c45;">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+               <div class="breadcrumb-text">
+                  <p style="font-size: 20px;">FASHIONSTORE</p>
+                  <h1>Cart</h1>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+	<div class="cart-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-12">
+					<div class="cart-table-wrap">
+						<table class="cart-table">
+							<thead class="cart-table-head">
+								<tr class="table-head-row">
+									<th class="product-name">NAME</th>
+									<th class="product-price">CATEGORY</th>
+									<th class="product-quantity">QUANTITY</th>
+									<th class="product-total">TOTAL</th>
+									<th class="product-remove"></th>
+								</tr>
+							</thead>
+							<tbody>
+							{% for d in data %}
+								<tr class="table-body-row cart-item" >
+									<td class="product-name">{{ d.Proname }}</td>
+									<td class="product-price">{{ d.Category }}</td>
+									<td class="product-price">{{ d.Quantity }}</td>
+									<td class="item-price">{{ d.Price }}₹</td>
+									<td class="product-remove"><a href="{% url 'deletecartfont' dataid=d.id %}"><i class="fa fa-trash"></i></a></td>
+									{% endfor %}
+								</tr>
+						</table>
+					</div>
+				</div>
+
+				<div class="col-lg-4">
+					<div class="total-section">
+						<table class="total-table">
+							<thead class="total-table-head">
+								<tr class="table-total-row">
+									<th> Total Price</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="total-data">
+									<td><strong>GST : </strong></td>
+									<td id="gst-price">40₹</td>
+								</tr>
+								<tr class="total-data">
+									<td><strong>Total Amount : </strong></td>
+									<td id="total-price"></td>
+								</tr>
+							<tr class="total-data">
+									<td><strong>Net Amount : </strong></td>
+									<td id="total-price-gst"></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="cart-buttons">
+							<a href="{% url 'check' %}" class="boxed-btn black">PLACE ORDER</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+							<p>FASHIONSTORE</p>
+                             <p>www.fasionstore.com</p>
+					</p>
+				</div>
+				<div class="col-lg-6 text-right col-md-12">
+					<div class="social-icons">
+						<ul>
+							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+   
+
+   <script src="{% static 'product/assets/js/jquery-1.11.3.min.js' %}"></script>
+   <script src="{% static 'product/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+   <script src="{% static 'product/assets/js/jquery.countdown.js' %}"></script>
+   <script src="{% static 'product/assets/js/jquery.isotope-3.0.6.min.js' %}"></script>
+   <script src="{% static 'product/assets/js/waypoints.js' %}"></script>
+   <script src="{% static 'product/assets/js/owl.carousel.min.js' %}"></script>
+   <script src="{% static 'product/assets/js/jquery.magnific-popup.min.js' %}"></script>
+   <script src="{% static 'product/assets/js/jquery.meanmenu.min.js' %}"></script>
+   <script src="{% static 'product/assets/js/sticker.js' %}"></script>
+   <script src="{% static 'product/assets/js/main.js' %}"></script>
+
+
+<script>
+const cartItems = document.querySelectorAll(".cart-item");
+let totalPrice = 0;
+
+cartItems.forEach(item => {
+  const itemPrice = parseFloat(item.querySelector(".item-price").textContent);
+  totalPrice += itemPrice;
+});
+
+const gstPrice = parseFloat(document.getElementById("gst-price").textContent);
+const totalPriceWithGst = totalPrice + gstPrice;
+
+document.getElementById("total-price").textContent = " " + totalPrice.toFixed(2);
+document.getElementById("total-price-gst").textContent = " " + totalPriceWithGst.toFixed(2);
+
+
+
+
+</script>
+
+   {% if messages %}
+  {% for message in messages %}
+
+   {% if message.tags == 'warning' %}
+   <script>
+     swal('{{message}}','','warning');
+   </script>
+
+   {% elif message.tags == 'error' %}
+   <script>
+     swal('{{message}}','','error');
+   </script>
+
+   {% else%}
+   <script>
+     swal('{{message}}','','success');
+   </script>
+
+   {% endif %}
+
+   {% endfor %} {% endif %}
+
+
+</body>
+</html>

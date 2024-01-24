@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html lang="en">
+
+<head>
+
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>FASHIONSTORE</title>
+
+
+    <meta name="description" content="Snow - Clean & Minimal Portfolio HTML template.">
+    <meta name="keywords" content="portfolio, clean, minimal, blog, template, portfolio website">
+    <meta name="author" content="nK">
+
+    <link rel="icon" type="image/png" href="{% static 'assets/images/logo2.png' %}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+<link rel="stylesheet" href="{% static 'assets/css/combined.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'product/assets/css/all.min.css' %}">
+	<link rel="stylesheet" href="{% static 'product/assets/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'product/assets/css/owl.carousel.css' %}">
+	<link rel="stylesheet" href="{% static 'product/assets/css/magnific-popup.css' %}">
+	<link rel="stylesheet" href="{% static 'product/assets/css/animate.css' %}">
+	<link rel="stylesheet" href="{% static 'product/assets/css/meanmenu.min.css' %}">
+	<link rel="stylesheet" href="{% static 'product/assets/css/main.css' %}">
+	<link rel="stylesheet" href="{% static 'product/assets/css/responsive.css' %}">
+
+<body>
+ <div class="top-header-area" id="sticker" style="background-color: #202c45;" >
+      <div class="container" >
+         <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+               <div class="main-menu-wrap">
+                  <div class="site-logo">
+                     <a href="index.html">
+                        <img src="{% static 'product/assets/images/fashhi.png' %}" alt="">
+                     </a>
+                  </div>
+
+
+                  <nav class="main-menu">
+                     <ul>
+                        <li class="current-list-item"><a href="{% url 'homepage' %}">HOME</a>
+
+                         <li>
+                            <a href="{% url 'categorypage' %}">CATEGORIES</a>
+                        </li>
+
+                         <li>
+                            <a href="{% url 'contactpage' %}">CONTACT</a>
+                        </li>
+
+                         <i class="fas fa-user-alt"></i>
+                        {% if request.session.username %}
+                        <li><a href=""><B>{{ request.session.username }}</B></a>
+                           {% endif %}
+                           <ul class="sub-menu">
+                              <li><a href="{% url 'weblogin' %}">SIGN IN/SIGN UP</a></li>
+                              <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+                           </ul>
+                        </li>
+
+                        <li>
+                           <div class="header-icons">
+                              <a class="shopping-cart" href="{% url 'viewcartpage' %}"><i class="fas fa-shopping-cart"></i></a>
+                           </div>
+                        </li>
+                     </ul>
+                  </nav>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+<div class="single-product mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5">
+					<div class="single-product-img">
+						<img src="{{ dat.Image.url }}" alt="">
+					</div>
+				</div>
+				<div class="col-md-7">
+					<div class="single-product-content">
+						<h3>{{dat.Name}}</h3>
+
+						<p class="single-product-pricing"><span>₹{{dat.Price}}</span> </p>
+						<p> {{dat.Description}}</p>
+                        <form action="{% url 'savecart' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+						<div class="single-product-form">
+
+
+								<input type="number" placeholder="0"  id="quantity" name="quantity"><br>
+                               <input type="hidden" name="price" id="price"  value="{{dat.Price}}">
+                        <label>total price</label><br>
+                        <input type="text" name="totalprice" id="total">
+                                <input type="hidden" name="prodname" value="{{dat.Name}}">
+                                <input type="hidden" name="procart" value="{{dat.Description}}">
+
+                            <br><br>
+							<button class="btn btn-warning py-3 px-5 mt-3">Add to Cart<i class="fas fa-shopping-cart"></i> </button>
+                            </form>
+						</div>
+                </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+							<p>FASHIONSTORE</p>
+                             <p>www.fashionstore.com</p>
+					</p>
+				</div>
+				<div class="col-lg-6 text-right col-md-12">
+					<div class="social-icons">
+						<ul>
+							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script src="{% static 'assets/js/combined.js' %}"></script>
+	<script src="{% static 'product/assets/js/jquery-1.11.3.min.js' %}"></script>
+	<script src="{% static 'product/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'product/assets/js/jquery.countdown.js' %}"></script>
+	<script src="{% static 'product/assets/js/jquery.isotope-3.0.6.min.js' %}"></script>
+	<script src="{% static 'product/assets/js/waypoints.js' %}"></script>
+	<script src="{% static 'product/assets/js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'product/assets/js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'product/assets/js/jquery.meanmenu.min.js' %}"></script>
+	<script src="{% static 'product/assets/js/sticker.js' %}"></script>
+	<script src="{% static 'product/assets/js/main.js' %}"></script>
+ <script type="text/javascript">
+        $(document).ready(function(){
+        $("#quantity").change(function(){
+        quantity=document.getElementById("quantity").value;
+        price=document.getElementById("price").value;
+        total=quantity*price;
+        document.getElementById("total").value=total;
+        });
+    });
+</script>
+</body>
+
+</html>

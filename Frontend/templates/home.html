@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Fashionstore</title>
+
+    <meta name="description" content="Snow - Clean & Minimal Portfolio HTML template.">
+    <meta name="keywords" content="portfolio, clean, minimal, blog, template, portfolio website">
+    <meta name="author" content="nK">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+
+    <link rel="icon" type="image/png" href="{% static 'assets/images/TITLE.png' %}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="{% static 'assets/css/combined.css' %}">
+
+ <link rel="stylesheet" href="{% static 'product/assets/css/all.min.css' %}">
+
+</head>
+
+<body>
+
+
+
+      
+    <header class="nk-header">
+        
+       
+        <nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-transparent nk-navbar-white-text-on-top">
+            <div class="container">
+                <div class="nk-nav-table">
+                    <a href="index.html" class="nk-nav-logo">
+                        <img src="{% static 'assets/images/fashh.jpg' %}" alt="" width="100" height="100" class="nk-nav-logo-onscroll">
+                        <img src="{% static 'assets/images/fashion.png' %}" alt="" width="100">
+                    </a>
+                    
+                    <ul class="nk-nav nk-nav-right hidden-md-down" data-nav-mobile="#nk-nav-mobile">
+                        <li>
+                            <a href="index.html#about">ABOUT</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'categorypage' %}">CATEGORIES</a>
+                        </li>
+
+                         <li>
+                            <a href="{% url 'contactpage' %}">CONTACT</a>
+                        </li>
+
+        <li >
+            <a href="{% url 'weblogin' %}">  Login/Signup </a></li>
+
+                             <i class="fas fa-user-alt"></i><li>
+
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+ {% if request.session.username %}
+          <span><i class="fa fa-user-o" aria-hidden="true"></i>{{ request.session.username }} </span>
+          {% endif %}
+      </a>
+      <ul class="dropdown-menu dropdown-menu-right">
+
+
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><a href="{% url 'logout' %}"> <i class="icon-power mr-2"></i> Logout </a></li>
+
+      </ul>
+    </li>
+                         <li style="padding-left: 50px;">
+                           <div class="header-icons">
+                              <a class="shopping-cart" href="{% url 'viewcartpage' %}"><i class="fas fa-shopping-cart"></i></a>
+                           </div>
+                        </li>
+                    </ul>
+
+                     
+                    <div>
+                        <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search_results' %}">
+                            <input class="form-control mr-sm-2" type="text" name="query" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                        </div>  
+
+
+                    <ul class="nk-nav nk-nav-right nk-nav-icons">
+                        <li class="single-icon hidden-lg-up">
+                            <a href="#" class="nk-navbar-full-toggle">
+                                <span class="nk-icon-burger">
+                                    <span class="nk-t-1"></span>
+                                    <span class="nk-t-2"></span>
+                                    <span class="nk-t-3"></span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+
+
+    <nav class="nk-navbar nk-navbar-full nk-navbar-align-center" id="nk-nav-mobile">
+        <div class="nk-navbar-bg">
+            
+        </div>
+        
+        <div class="nk-nav-table">
+            <div class="nk-nav-row">
+                <div class="container">
+                    <div class="nk-nav-header">
+
+                        <div class="nk-nav-logo">
+                            <a href="index.html" class="nk-nav-logo">
+                                <img src="{% static 'assets/images/logo-light.svg' %}" alt="" width="85">
+                            </a>
+                        </div>
+                   
+                     
+
+                        <div class="nk-nav-close nk-navbar-full-toggle">
+                            <span class="nk-icon-close"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nk-nav-row-full nk-nav-row">
+                <div class="nano">
+                    <div class="nano-content">
+                        <div class="nk-nav-table">
+                            <div class="nk-nav-row nk-nav-row-full nk-nav-row-center nk-navbar-mobile-content">
+                                <ul class="nk-nav">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nk-nav-row">
+                <div class="container">
+                    <div class="nk-nav-social">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+   
+   
+
+    <div class="nk-main">
+
+        <div class="nk-header-title nk-header-title-full">
+            <div class="bg-image">
+                <div class="bg-image-overlay" style="background-color: rgba(179, 67, 67, 0.6);"></div>
+            </div>
+            <div class="nk-header-table">
+                <div class="nk-header-table-cell">
+                    <div class="container">
+
+
+
+                        <h1 class="nk-title display-3 text-white">"Fashion is the armor to survive the reality of everyday life." 
+
+
+                            <br>
+                            <em class="fw-300" style="font-size: 28px ;margin-left: 690px;">       ~ Bill Cunningham</em>
+                        </h1>
+
+
+                        <div class="nk-gap"></div>
+                        <div class="nk-header-text text-white">
+                            <div class="nk-gap-4"></div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <a class="nk-header-title-scroll-down text-white" href="#nk-header-title-scroll-down">
+                    <span class="pe-7s-angle-down"></span>
+                </a>
+            </div>
+
+        </div>
+
+        <div id="nk-header-title-scroll-down"></div>
+
+        
+        <div class="bg-white" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 text-xs-center">
+                        <div class="nk-gap-4 mt-9"></div>
+
+                        <h2 class="display-4">About Us</h2>
+                        <div class="nk-gap mnt-5"></div>
+
+                        <p>   
+                            Immerse yourself in the world of FASHION with our fashion store and experience the entire range of over 70 sports and 5,000+ products. Choose from a curated selection of stylish gear and equipment designed to elevate your play-ready fashion.</p>
+
+                        <img src="{% static 'assets/images/about-me-signature.png' %}" alt="" class="nk-img-fit">
+
+                        <div class="nk-gap-4 mt-25"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+     
+
+        
+        <div class="nk-box bg-white" id="projects">
+            <div class="nk-gap-4 mt-5"></div>
+
+            <h2 class="text-xs-center display-4">CATEGORIES</h2>
+
+            <div class="nk-gap mnt-6"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="text-xs-center">OUR CATEGORIES
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nk-gap-2 mt-12"></div>
+            <div class="container">
+
+            <div class="nk-portfolio-list nk-isotope nk-isotope-3-cols">
+{% for d in data %}
+                <div class="nk-isotope-item" data-filter="Mockup">
+
+                    <div class="nk-portfolio-item nk-portfolio-item-square nk-portfolio-item-info-style-1">
+                        <a href="{% url 'disproduct' itemcatg=d.id %}" class="nk-portfolio-item-link"></a>
+
+                     <img src="{{ d.Image.url }} " width="370px" height="350px">
+
+                        <div class="nk-portfolio-item-info nk-portfolio-item-info-center text-xs-center">
+
+                            <div>
+                                <h2 class="portfolio-item-title h3">{{ d.Name }}</h2>
+                                <div class="portfolio-item-category">{{ d.Description }}</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+{% endfor %}
+            </div>
+
+            <div class="nk-gap-4 mt-15"></div>
+        </div>
+       
+        <div class="nk-box bg-dark-1">
+            <div class="nk-gap-5 mnt-6"></div>
+            <div class="nk-gap-3"></div>
+            <div class="container-fluid">
+                <div class="nk-carousel nk-carousel-all-visible text-white" data-autoplay="18000" data-dots="true">
+                    <div class="nk-carousel-inner">
+                        <div>
+                            <div>
+                                <blockquote class="nk-blockquote-style-1 text-white">
+                                    <p> "if you train hard you'll not only be hard,you'll be hard to beat</p>
+                                    <cite>Herschel Walker</cite>
+                                </blockquote>
+                                <div class="nk-gap-3 mt-10"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <blockquote class="nk-blockquote-style-1 text-white">
+                                    <p>"Don't put a limit on anything the more you dream the further you get" </p>
+                                    <cite>Michael Phelps</cite>
+                                </blockquote>
+                                <div class="nk-gap-3 mt-10"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <blockquote class="nk-blockquote-style-1 text-white">
+                                    <p>"Every champion was once a contender that refused to give up"</p>
+                                    <cite>Rocky Balboa</cite>
+                                </blockquote>
+                                <div class="nk-gap-3 mt-10"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nk-gap-4 mt-3"></div>
+        </div>
+        
+        <div class="nk-box bg-gray-1" id="blog">
+            <div class="nk-gap-4 mt-5"></div>
+
+            <h2 class="text-xs-center display-4">POPULAR PRODUCTS</h2>
+
+            <div class="nk-gap mnt-6"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="text-xs-center">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nk-gap-2 mt-12"></div>
+            <div class="container">
+              
+                <div class="nk-carousel-2 nk-carousel-x2 nk-carousel-no-margin nk-carousel-all-visible nk-blog-isotope" data-dots="true">
+                    <div class="nk-carousel-inner">
+
+
+                        <div>
+                            <div>
+                                <div class="pl-15 pr-15">
+                                    <div class="nk-blog-post">
+                                        <div class="nk-post-thumb">
+                                            <a href="#">
+                                                <img src="{% static 'assets/images/d1.jpg' %}"height="275px" width="180px" alt="" class="nk-img-stretch">
+                                            </a>
+
+                                        </div>
+                                        <h2 class="nk-post-title h4">Family Package</h2>
+
+
+
+                                        <div class="nk-post-text">
+                                            <p>Discover the essence of togetherness with our Family Package, a carefully curated collection that brings style to every member of your family. From trendy outfits for parents to adorable ensembles for the little ones, this package ensures that everyone can embrace fashion in harmony. Unite your family in a shared sense of style and create lasting memories with our versatile and coordinated fashion.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nk-gap-1"></div>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div>
+                                <div class="pl-15 pr-15">
+                                    <div class="nk-blog-post">
+                                        <div class="nk-post-thumb">
+                                            <a href="#">
+                                                <img src="{% static 'assets/images/d2.jpg' %}"height="275px" width="180px" alt="" class="nk-img-stretch">
+                                            </a>
+
+                                        </div>
+                                        <h2 class="nk-post-title h4">
+                                            Mother-Son Pairing</h2>
+
+
+
+                                        <div class="nk-post-text">
+                                            <p>Elevate the bond between mothers and sons with our Mother-Son Pairing collection. Designed to capture the essence of shared style and connection, this curated selection ensures that both mom and son can step out in coordinated fashion. From charming ensembles to stylish outfits, this collection celebrates the unique and heartwarming connection between a mother and her son.</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="nk-gap-1"></div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                        <div>
+                            <div>
+                                <div class="pl-15 pr-15">
+                                    <div class="nk-blog-post">
+                                        <div class="nk-post-thumb">
+                                            <a href="#">
+                                                <img src="{% static 'assets/images/d3.jpg' %}"height="275px" width="180px" alt="" class="nk-img-stretch">
+                                            </a>
+
+                                        </div>
+                                        <h2 class="nk-post-title h4">
+                                            Kids Ensemble</h2>
+
+
+
+                                        <div class="nk-post-text">
+                                            <p>Kids Ensemble collection Carefully curated for the youngest trendsetters, this collection features a delightful array of outfits that combine comfort with the latest trends. From whimsical prints to adorable designs, Let their personalities shine as they embark on exciting adventures in fashion-forward and comfortable looks from our Kids Ensemble collection.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nk-gap-1"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+ 
+
+
+</div>
+      
+        <footer class="nk-footer">
+
+
+            <div class="nk-footer-cont">
+                <div class="container text-xs-center">
+                    <div class="nk-footer-social">
+                        <ul>
+                            <li><a href="https://twitter.com/?lang=en-in"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://dribbble.com/?/"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nk-footer-text">
+                        <p>2023 &copy; www.fashionstore.com</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+      
+
+    </div>
+
+
+
+
+   
+
+    <script src="{% static 'assets/js/combined.js' %}"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+   {% if messages %}
+  {% for message in messages %}
+
+   {% if message.tags == 'warning' %}
+   <script>
+     swal('{{message}}','','warning');
+   </script>
+
+   {% elif message.tags == 'error' %}
+   <script>
+     swal('{{message}}','','error');
+   </script>
+
+   {% else%}
+   <script>
+     swal('{{message}}','','success');
+   </script>
+
+   {% endif %}
+
+   {% endfor %} {% endif %}
+
+        </div></div>
+</body>
+
+</html>
