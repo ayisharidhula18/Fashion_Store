@@ -33,7 +33,7 @@
 <body>
 
 
-
+<div>
       
     <header class="nk-header">
         
@@ -77,22 +77,37 @@
 
       </ul>
     </li>
-                         <li style="padding-left: 50px;">
-                           <div class="header-icons">
-                              <a class="shopping-cart" href="{% url 'viewcartpage' %}"><i class="fas fa-shopping-cart"></i></a>
-                           </div>
-                        </li>
-                    </ul>
+</ul>
 
-                     
-                    <div>
-                        <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search_results' %}">
-                            <input class="form-control mr-sm-2" type="text" name="query" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                        </div>  
+    <!-- dummy -->
+    <div class="navbar_search" style="    display: flex;
+    align-items: center;    margin-top: 15px;
+    margin-left: 34px;gap: 15;">
+        <div class="header-icons">
+            <a class="shopping-cart" href="{% url 'viewcartpage' %}"><i class="fas fa-shopping-cart"></i></a>
+         </div>
+         
+         <div id="navbar">
+            <ul>
+                <!-- Other navigation links -->
+                <li><a href="{% url 'wishlist' %}"><i class="fas fa-heart"></i></a></li>
+            </ul>
+        </div>
+        
+        <div>
+            <form style="    display: flex;" class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search_results' %}">
+                <input class="form-control mr-sm-2" type="text" name="query" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+           
+            </div>  
 
+    </div>
+     <!-- dummy -->
+                        
+                         
 
+              
                     <ul class="nk-nav nk-nav-right nk-nav-icons">
                         <li class="single-icon hidden-lg-up">
                             <a href="#" class="nk-navbar-full-toggle">
@@ -158,7 +173,7 @@
         </div>
     </nav>
    
-   
+</div>   
 
     <div class="nk-main">
 
@@ -434,7 +449,7 @@
                     </div>
 
                     <div class="nk-footer-text">
-                        <p>2023 &copy; www.fashionstore.com</p>
+                        <p>2024 &copy; www.fashionstore.com</p>
                     </div>
                 </div>
             </div>
@@ -478,3 +493,4 @@
 </body>
 
 </html>
+

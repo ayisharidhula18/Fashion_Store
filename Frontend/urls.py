@@ -22,4 +22,8 @@ urlpatterns = [
     path('check/',views.check,name="check"),
     path('savecheck/',views.savecheck,name="savecheck"),
     path('search/',views.search_results, name='search_results'),
+
+    path('wishlist/',views.wishlist, name='wishlist'),
+    path('add_to_wishlist/<int:product_id>/',views.add_to_wishlist, name='add_to_wishlist'),
+    path('remove_from_wishlist/<int:wishlist_id>/',views.remove_from_wishlist, name='remove_from_wishlist'),
 ]

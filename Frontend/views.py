@@ -1,14 +1,14 @@
 from django.contrib import messages
 from django.shortcuts import render,redirect
 from Backent.models import categorydb,productdb,contactdb
-from Frontend.models import customerdb, cartdb,checkoutdb
+from Frontend.models import customerdb, cartdb,checkoutdb,wishlistdb
 from django.db.models import query
 from django.http import HttpResponse 
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
+
 
 
 # Create your views here.
@@ -69,6 +69,7 @@ def savecustomer(request):
         messages.success(request, "Registered Successfully")
 
         return redirect(weblogin)
+    
 
 def custemerlogin(request):
     if request.method=='POST':
@@ -84,6 +85,25 @@ def custemerlogin(request):
             messages.error(request,"Invalid User..!")
             return render(request,'weblogin.html')
         
+
+# def custemerlogin(request):
+#     if request.method == 'POST':
+#         Username_r = request.POST.get("username")
+#         Password_r = request.POST.get("password")
+
+#         if customerdb.objects.filter(Username=Username_r, Password=Password_r).exists():
+#             # Retrieve user from the database
+#             user = customerdb.objects.get(Username=Username_r, Password=Password_r)
+
+#             # Set the user_id in the session
+#             request.session['user_id'] = user.id
+
+#             messages.success(request, "Login Successfully...!")
+#             return redirect(homepage)
+#         else:
+#             messages.error(request, "Invalid User..!")
+#             return render(request, 'weblogin.html')
+
 
 
 def some_protected_view(request):
@@ -151,4 +171,46 @@ def search_results(request):
     return render(request, 'search.html', context)
 
 
+def wishlist(request):
+ 
+    user_id = request.user.id
+    wishlist_items = wishlistdb.objects.filter(Customer_id=user_id)
+    
+
+    # Print some information for debugging
+    print("User ID:", user_id)
+    print("Wishlist Items:", wishlist_items)
+
+    return render(request, 'wishlist.html', {'wishlist_items': wishlist_items})
+
+def add_to_wishlist(request, product_id):
+    user_id = request.user.id
+    
+    
+    if user_id is not None:
+        product = get_object_or_404(productdb, id=product_id)
+
+        if not wishlistdb.objects.filter(Customer_id=user_id, Product=product).exists():
+            wishlist_item = wishlistdb(
+                Customer_id=user_id,
+                Product=product,
+                ProductName=product.product_name,  # Assuming your wishlistdb model has a field 'ProductName'
+                ProductImage=product.product_image,  # Assuming your wishlistdb model has a field 'ProductImage'
+            )
+            wishlist_item.save()
+            messages.success(request, "Added to Wishlist")
+        else:
+            messages.warning(request, "Product is already in the Wishlist")
+
+        return redirect('product_detail', product_id=product_id)
+    else:
+        messages.warning(request, "You need to be logged in to add to the wishlist")
+        return redirect('weblogin')
+
+def remove_from_wishlist(request, wishlist_id):
+    user_id = request.user.id  # Use request.user.id to get the user object, assuming the user is authenticated
+    wishlist_item = get_object_or_404(wishlistdb, Customer_id=user_id, id=wishlist_id)
+    wishlist_item.delete()
+    messages.success(request, "Removed from Wishlist")
+    return redirect('wishlist')
 

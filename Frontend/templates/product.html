@@ -179,6 +179,8 @@
 						<h3>{{ product.Name }}</h3>
 						<p class="product-price"><span>{{product.Description }}</span> {{ product.Price }}</p>
 						<a href="{% url 'productsingle' dataid=product.id %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Show Details</a>
+                        <a href="{% url 'wishlist' %}" class="cart-btn"><i class="fas fa-heart"></i></a>
+        
 					</div>
 				</div>
                 {% endfor %}
